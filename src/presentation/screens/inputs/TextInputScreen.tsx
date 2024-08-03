@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { ScrollView, Text, TextInput, View } from 'react-native';
 
 import { CustomView } from '../../components/ui/CustomView';
 import { Title } from '../../components/ui/Title';
@@ -17,40 +17,63 @@ export const TextInputScreen = () => {
   });
 
   return (
-    <CustomView margin>
-      <Title text="Text Inputs" safe/>
+    <ScrollView>
+      <CustomView margin>
+        <Title text="Text Inputs" safe/>
 
-      <Card>
-        <TextInput
-         style={globalStyles.input}
-         placeholder='Nombre completo'
-         autoCapitalize={'words'}
-         autoCorrect={false}
-         onChangeText={value=>setForm({...form, name: value})}
-        />
+        <Card>
+          <TextInput
+          style={globalStyles.input}
+          placeholder='Nombre completo'
+          autoCapitalize={'words'}
+          autoCorrect={false}
+          onChangeText={value=>setForm({...form, name: value})}
+          />
 
-        <TextInput
-         style={globalStyles.input}
-         placeholder='Correo electronico'
-         autoCorrect={false}
-         keyboardType='email-address'
-         onChangeText={value=>setForm({...form, name: value})}
-        />
+          <TextInput
+          style={globalStyles.input}
+          placeholder='Correo electronico'
+          autoCorrect={false}
+          keyboardType='email-address'
+          onChangeText={value=>setForm({...form, name: value})}
+          />
 
-        <TextInput
-         style={globalStyles.input}
-         placeholder='Telefono'
-          keyboardType='phone-pad'
-         onChangeText={value=>setForm({...form, name: value})}
-        />
-      </Card>
+          <TextInput
+          style={globalStyles.input}
+          placeholder='Telefono'
+            keyboardType='phone-pad'
+          onChangeText={value=>setForm({...form, name: value})}
+          />
+        </Card>
 
-      <View style={{height:10}}/>
+        <View style={{height:10}}/>
 
-      <Card>
-        <Text>{JSON.stringify(form, null, 2)}</Text>
-      </Card>
-    </CustomView>
+        <Card>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+          <Text>{JSON.stringify(form, null, 2)}</Text>
+        </Card>
+        <View style={{height:10}}/>
+        <Card>
+          <TextInput
+            style={globalStyles.input}
+            placeholder='Telefono'
+            keyboardType='phone-pad'
+            onChangeText={value=>setForm({...form, name: value})}
+            />
+        </Card>
+      </CustomView>
+      <View style={{height:20}}/>
+    </ScrollView>
   );
 }
 
