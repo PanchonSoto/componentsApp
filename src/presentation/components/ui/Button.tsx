@@ -26,7 +26,7 @@ export const Button = ({text, styles, onPress}:Props) => {
                 globalStyles.btnPrimaryText,
                 { color: colors.buttonTextColor }
             ]}>
-                Button
+                { text }
             </Text>
         </Pressable>
     )
