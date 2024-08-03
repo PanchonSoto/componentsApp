@@ -7,6 +7,8 @@ import { CustomView } from '../../components/ui/CustomView';
 import { Title } from '../../components/ui/Title';
 import { Button } from '../../components/ui/Button';
 
+import { onShowPrompt } from '../../../config/adapters/prompt.adapter';
+
 
 export const AlertScreen = () => {
 
@@ -44,20 +46,34 @@ export const AlertScreen = () => {
   }
 
   const showPrompt = () => {
+    onShowPrompt({
+      title: 'Custom Prompt',
+      message: 'Custom message from alertScreen',
+      callbackOrButtons: [
+        {text: 'Exit', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: 'Oki', onPress: password => console.log('OK Pressed, password: ' + password)},
+      ],
+      options: {
+        type: 'plain-text',
+        cancelable: false,
+        defaultValue: 'test',
+        placeholder: 'Custom input'
+      }
+    });
     //!dont work on android
-    Alert.prompt(
-      'Confirm Account Removal',
-      'Are you sure you want to remove your account? This action cannot be undone. Type "DELETE" to confirm:',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'Remove',
-          onPress: text => console.log(text)
-        }
-     ])
+    // Alert.prompt(
+    //   'Confirm Account Removal',
+    //   'Are you sure you want to remove your account? This action cannot be undone. Type "DELETE" to confirm:',
+    //   [
+    //     {
+    //       text: 'Cancel',
+    //       style: 'cancel',
+    //     },
+    //     {
+    //       text: 'Remove',
+    //       onPress: text => console.log(text)
+    //     }
+    //  ])
   }
 
 
