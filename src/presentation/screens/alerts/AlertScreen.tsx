@@ -1,5 +1,5 @@
 import { Alert, View } from 'react-native';
-
+import { useContext } from 'react';
 
 import { globalStyles } from '../../../config/theme/theme';
 
@@ -8,9 +8,12 @@ import { Title } from '../../components/ui/Title';
 import { Button } from '../../components/ui/Button';
 
 import { onShowPrompt } from '../../../config/adapters/prompt.adapter';
+import { ThemeContext } from '../../context/ThemeContext';
 
 
 export const AlertScreen = () => {
+
+  const {isDark} = useContext(ThemeContext);
 
   const createTwoButtonAlert = () => {
     Alert.alert('Alert Title', 'My Alert Msg', [
@@ -21,7 +24,7 @@ export const AlertScreen = () => {
       },
       {text: 'OK', onPress: () => console.log('OK Pressed')},
     ], {
-      userInterfaceStyle: 'dark'
+      userInterfaceStyle: isDark ? 'dark' : 'light'
     });
   }
 
@@ -41,7 +44,8 @@ export const AlertScreen = () => {
       cancelable: true,
       onDismiss() {
         console.log('onDismiss');
-      }
+      },
+      userInterfaceStyle: isDark ? 'dark' : 'light'
     });
   }
 

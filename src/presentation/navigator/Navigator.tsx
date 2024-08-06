@@ -15,13 +15,24 @@ import { ModalScreen } from '../screens/ui/ModalScreen';
 import { InfiniteScrollScreen } from '../screens/ui/InfiniteScrollScreen';
 import { SlidesScreen } from '../components/ui/SlidesScreen';
 
+import { ChangeThemeScreen } from '../screens/theme/ChangeThemeScreen';
+import { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
+
 
 const Stack = createStackNavigator();
 
 export const Navigator = () => {
+
+  const {colors} = useContext(ThemeContext);
+
+
+
+
   return (
     <Stack.Navigator screenOptions={{
       headerShown: false,
+      cardStyle: {backgroundColor:colors.background}
     }}>
       <Stack.Screen name="Home" component={HomeScreen} />
 
@@ -38,6 +49,7 @@ export const Navigator = () => {
       <Stack.Screen name="InfiniteScrollScreen" component={InfiniteScrollScreen}/>
       <Stack.Screen name="SlidesScreen" component={SlidesScreen}/>
 
+      <Stack.Screen name="ChangeThemeScreen" component={ChangeThemeScreen}/>
     </Stack.Navigator>
   );
 }

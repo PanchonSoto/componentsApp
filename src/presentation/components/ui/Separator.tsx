@@ -1,6 +1,9 @@
+import { useContext } from 'react';
 import { View, Text, StyleProp, ViewStyle } from 'react-native'
-import React from 'react'
-import { colors } from '../../../config/theme/theme';
+
+import { ThemeContext } from '../../context/ThemeContext';
+
+
 
 interface Props {
     style?: StyleProp<ViewStyle>;
@@ -9,6 +12,9 @@ interface Props {
 
 
 export const Separator = ({style}:Props) => {
+
+  const {colors} = useContext(ThemeContext);
+
   return (
     <View style={{backgroundColor: colors.cardBackground}}>
         <View style={[
