@@ -1,6 +1,9 @@
-import { createContext, PropsWithChildren, useEffect, useState } from 'react';
-import { darkColors, lightColors, ThemeColors } from "../../config/theme/theme";
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { Appearance, AppState, useColorScheme } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+
+import { darkColors, lightColors, ThemeColors } from "../../config/theme/theme";
+import { CustomDarkTheme, CustomDefaultTheme } from '../../config/theme/NavigationTheme';
 
 
 
@@ -23,7 +26,8 @@ export const ThemeProvider = ({children}:PropsWithChildren) => {
 
     const colorScheme = useColorScheme();
     const [currentTheme, setcurrentTheme] = useState<ThemeColor>('light');
-
+    const isDark = currentTheme==='dark';
+    const colors = isDark ? darkColors : lightColors;
 
     useEffect(() => {
         if(colorScheme==='dark'){
@@ -50,13 +54,15 @@ export const ThemeProvider = ({children}:PropsWithChildren) => {
     }
 
     return (
-        <ThemeContext.Provider value={{
-            currentTheme: currentTheme,
-            isDark: (currentTheme!=='light'),
-            colors: (currentTheme==='light' ? lightColors : darkColors),
-            setTheme: setTheme,
-        }}>
-            { children }
-        </ThemeContext.Provider>
+        <NavigationContainer theme={isDark ? CustomDarkTheme:CustomDefaultTheme}>
+            <ThemeContext.Provider value={{
+             currentTheme: currentTheme,
+             isDark: isDark,
+             colors: colors,
+             setTheme: setTheme,
+            }}>
+                { children }
+            </ThemeContext.Provider>
+      </NavigationContainer>
     )
 }
